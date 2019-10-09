@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-ast-printer.iml" filepath="$PROJECT_DIR$/.idea/modules/java-ast-printer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-ast-printer.iml" filepath="$PROJECT_DIR$/.idea/modules/java-ast-printer.iml" group="java-ast-printer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-ast-printer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/java-ast-printer_main.iml" group="java-ast-printer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-ast-printer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/java-ast-printer_test.iml" group="java-ast-printer" />
     </modules>
