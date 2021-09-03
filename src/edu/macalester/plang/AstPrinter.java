@@ -100,7 +100,6 @@ public class AstPrinter {
 
         for(Method method : node.getClass().getMethods()) {
             if(method.getName().startsWith("get")                              // getters only
-                && !method.getName().endsWith("AsString")
                 && method.getParameterCount() == 0
                 && !ignoredNodeAttrs.contains(method.getName())
             ) {
