@@ -7,10 +7,8 @@ import com.github.javaparser.ast.NodeList;
 
 import java.awt.FileDialog;
 import java.awt.Frame;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
@@ -34,6 +32,7 @@ public class AstPrinter {
         AstPrinter astPrinter = new AstPrinter(2);
 
         FileDialog fileDialog = new FileDialog((Frame) null);
+        fileDialog.setFilenameFilter((dir, name) -> name.endsWith(".java"));
         fileDialog.setVisible(true);
         File[] files = fileDialog.getFiles();
 
@@ -99,7 +98,7 @@ public class AstPrinter {
         StringBuilder desc = new StringBuilder(unqualifiedName(node.getClass()));
 
         for(Method method : node.getClass().getMethods()) {
-            if(method.getName().startsWith("get")                              // getters only
+            if(method.getName().startsWith("get")  // getters only
                 && method.getParameterCount() == 0
                 && !ignoredNodeAttrs.contains(method.getName())
             ) {
