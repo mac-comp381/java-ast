@@ -7,10 +7,11 @@ import com.github.javaparser.ast.NodeList;
 
 import java.awt.FileDialog;
 import java.awt.Frame;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Method;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -34,12 +35,22 @@ public class AstPrinter {
         fileDialog.setVisible(true);
         File[] files = fileDialog.getFiles();
 
-        for(File file : files) {
-            CompilationUnit cu = StaticJavaParser.parse(new FileInputStream(file));
-            astPrinter.dump(cu, 0);
-        }
+        while (true) {
+            for(File file : files) {
+                System.out.println();
+                System.out.println("––––––––––––––––––––––––––––––––––");
+                System.out.println(file);
+                System.out.println("––––––––––––––––––––––––––––––––––");
+                System.out.println();
+                System.out.flush();
+                CompilationUnit cu = StaticJavaParser.parse(new FileInputStream(file));
+                astPrinter.dump(cu, 0);
+            }
 
-        System.exit(0);
+            System.out.println();
+            System.out.println("[Press return to parse again]");
+            new BufferedReader(new InputStreamReader(System.in)).readLine();
+        }
     }
 
     public AstPrinter(int tabSize) {
