@@ -1,6 +1,6 @@
 package edu.macalester.plang;
 
-import com.github.javaparser.JavaParser;
+import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
@@ -35,7 +35,7 @@ public class AstPrinter {
         File[] files = fileDialog.getFiles();
 
         for(File file : files) {
-            CompilationUnit cu = JavaParser.parse(new FileInputStream(file));
+            CompilationUnit cu = StaticJavaParser.parse(new FileInputStream(file));
             astPrinter.dump(cu, 0);
         }
 
