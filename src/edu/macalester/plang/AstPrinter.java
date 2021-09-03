@@ -19,6 +19,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.swing.JOptionPane;
+
 /**
  * Dumps javaparser’s AST in a human-friendly form.
  *
@@ -47,9 +49,18 @@ public class AstPrinter {
                 astPrinter.dump(cu, 0);
             }
 
-            System.out.println();
-            System.out.println("[Press return to parse again]");
-            new BufferedReader(new InputStreamReader(System.in)).readLine();
+            int userResponse = JOptionPane.showOptionDialog(
+                null,
+                "Parse again?",
+                "AST dump complete",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new String[] { "Parse again", "Quit" },
+                "Parse again");
+            if (userResponse == 1) {
+                System.exit(0);
+            }
         }
     }
 
@@ -69,7 +80,7 @@ public class AstPrinter {
                 .collect(Collectors.toSet()));
         attrs.addAll(Arrays.asList(
             "getComments", "getJavadoc", "getJavadocComment", "getSignature", "getId"
-            ));
+        ));
         ignoredNodeAttrs = attrs;
     }
 
@@ -91,8 +102,8 @@ public class AstPrinter {
             if(method.getName().startsWith("get")                              // getters only
                 && !method.getName().endsWith("AsString")
                 && method.getParameterCount() == 0
-                && !ignoredNodeAttrs.contains(method.getName()))
-            {
+                && !ignoredNodeAttrs.contains(method.getName())
+            ) {
                 String name = uncapitalize(method.getName().replaceFirst("get", ""));
                 Object value;
                 try {
