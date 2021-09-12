@@ -45,11 +45,11 @@ public class AstTransformer {
                         }
                         
                         StringBuilder poem = new StringBuilder();
-                        for (String s : List.of("fee", "fi", "fo", "fum")) {
-                            if (poem.size() > 0) {
+                        for (String word : List.of("fee", "fi", "fo", "fum")) {
+                            if (poem.length() > 0) {
                                 poem.append(" ");
                             }
-                            poem.append(s);
+                            poem.append(word);
                         }
                         System.out.println(poem);
                         
