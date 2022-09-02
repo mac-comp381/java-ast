@@ -11,7 +11,7 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    implementation group: 'com.github.javaparser', name: 'javaparser-symbol-solver-core', version: '3.23.+'
+    implementation group: 'com.github.javaparser', name: 'javaparser-symbol-solver-core', version: '3.24.+'
 }
 
 sourceCompatibility = 1.16
