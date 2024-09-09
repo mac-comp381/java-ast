@@ -71,9 +71,9 @@ public class AstTransformer {
         desugarForLoops(ast);
         desugarForEachLoops(ast);
 
-        System.out.println("––––––––––––––––––––––––––––––––––––––");
+        System.out.println("──────────────────────────────────");
         System.out.println(ast);
-        System.out.println("––––––––––––––––––––––––––––––––––––––");
+        System.out.println("──────────────────────────────────");
     }
 
     /**

@@ -39,9 +39,9 @@ public class AstPrinter {
         while (true) {
             for(File file : files) {
                 System.out.println();
-                System.out.println("––––––––––––––––––––––––––––––––––");
+                System.out.println("──────────────────────────────────");
                 System.out.println(file);
-                System.out.println("––––––––––––––––––––––––––––––––––");
+                System.out.println("──────────────────────────────────");
                 System.out.println();
                 System.out.flush();
                 CompilationUnit cu = StaticJavaParser.parse(new FileInputStream(file));
