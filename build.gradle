@@ -6,15 +6,15 @@ repositories {
     mavenCentral()
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
 dependencies {
     implementation group: 'com.github.javaparser', name: 'javaparser-symbol-solver-core', version: '3.24.+'
 }
 
-sourceCompatibility = 1.16
-targetCompatibility = 1.16
+java {
+    sourceCompatibility = 1.17
+    targetCompatibility = 1.17
+}
 
 sourceSets.main.java.srcDirs = ['src']
+sourceSets.main.resources.srcDirs = ['res']
+sourceSets.test.java.srcDirs = ['test']
