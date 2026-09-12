@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'com.github.javaparser', name: 'javaparser-symbol-solver-core', version: '3.24.+'
+    implementation group: 'com.github.javaparser', name: 'javaparser-symbol-solver-core', version: '3.28.+'
 }
 
 java {
@@ -18,3 +18,17 @@ java {
 sourceSets.main.java.srcDirs = ['src']
 sourceSets.main.resources.srcDirs = ['res']
 sourceSets.test.java.srcDirs = ['test']
+
+[
+    'ast-print':     'edu.macalester.plang.AstPrinter',
+    'ast-transform': 'edu.macalester.plang.AstTransformer'
+].each { taskName, mainClassName ->
+    task(taskName, dependsOn: 'classes', type: JavaExec) {
+        mainClass = mainClassName
+        classpath = sourceSets.main.runtimeClasspath
+        standardInput = System.in
+        javaLauncher = javaToolchains.launcherFor {
+            languageVersion = java.toolchain.languageVersion
+        }
+    }
+}

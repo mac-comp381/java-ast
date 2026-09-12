@@ -9,6 +9,7 @@ import java.awt.FileDialog;
 import java.awt.Frame;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
@@ -31,21 +32,22 @@ public class AstPrinter {
     public static void main(String[] args) throws Exception {
         AstPrinter astPrinter = new AstPrinter(2);
 
+        if (args.length > 0) {
+            for (String fileName : args) {
+                dumpFile(new File(fileName), astPrinter);
+            }
+            return;
+        }
+
         FileDialog fileDialog = new FileDialog((Frame) null);
+        fileDialog.setDirectory("examples");
         fileDialog.setFilenameFilter((dir, name) -> name.endsWith(".java"));
         fileDialog.setVisible(true);
         File[] files = fileDialog.getFiles();
 
         while (true) {
             for(File file : files) {
-                System.out.println();
-                System.out.println("──────────────────────────────────");
-                System.out.println(file);
-                System.out.println("──────────────────────────────────");
-                System.out.println();
-                System.out.flush();
-                CompilationUnit cu = StaticJavaParser.parse(new FileInputStream(file));
-                astPrinter.dump(cu, 0);
+                dumpFile(file, astPrinter);
             }
 
             int userResponse = JOptionPane.showOptionDialog(
@@ -61,6 +63,17 @@ public class AstPrinter {
                 System.exit(0);
             }
         }
+    }
+
+    private static void dumpFile(File file, AstPrinter astPrinter) throws FileNotFoundException {
+        System.out.println();
+        System.out.println("──────────────────────────────────");
+        System.out.println(file);
+        System.out.println("──────────────────────────────────");
+        System.out.println();
+        System.out.flush();
+        CompilationUnit cu = StaticJavaParser.parse(new FileInputStream(file));
+        astPrinter.dump(cu, 0);
     }
 
     public AstPrinter(int tabSize) {
